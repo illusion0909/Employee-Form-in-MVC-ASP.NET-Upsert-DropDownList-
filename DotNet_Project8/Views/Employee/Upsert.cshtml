@@ -1,0 +1,80 @@
+﻿@model DotNet_Project8.Models.Employee
+@using DotNet_Project8.Models;
+
+@{
+    var title = Model.Id != 0 ? "Edit Employee" : "New  Employee";
+    var btnsavupd = Model.Id != 0 ? "Update" : "Save";
+}
+
+<h2 class="text-primary text-center">@title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="form-group row">
+            <div class="col-4">
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="col-8">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                @Html.LabelFor(m => m.Address)
+            </div>
+            <div class="col-8">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                @Html.LabelFor(m => m.Salary)
+            </div>
+            <div class="col-8">
+                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                @Html.LabelFor(m => m.DepartmentId)
+            </div>
+            <div class="col-8">
+                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.depList, "Id", "Name"), "Select Department", new { @class = "form-control" })
+                @*@Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewData["depList"] as List<Department>, "Id", "Name"), "Select Department", new { @class = "form-control" })*@
+                @*@Html.TextBoxFor(m => m.Department, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                @Html.LabelFor(m => m.DesignationId)
+            </div>
+            <div class="col-8">
+                @Html.DropDownListFor(m => m.DesignationId, new SelectList(ViewBag.dsgList, "Id", "Name"), "Select Designation", new { @class = "form-control" })
+                @*@Html.DropDownListFor(m => m.DesignationId, new SelectList(ViewData["dsgList"] as List<Designation>, "Id", "Name"), "Select Designation", new { @class = "form-control" })*@
+                @*@Html.TextBoxFor(m => m.Designation, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(m => m.DesignationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-8">
+                <button type="submit" class="btn btn-success">
+                    @btnsavupd
+                </button>
+            </div>
+        </div>
+    </div>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "DemoFirst";
+}
+
+
+<h2>Demo First</h2>
+<h1>
+    @ViewData["vdata"]
+</h1>
+<h1>
+    @TempData["tdata"]
+</h1>
+@Html.ActionLink("Call Demo Second", "DemoSecond");

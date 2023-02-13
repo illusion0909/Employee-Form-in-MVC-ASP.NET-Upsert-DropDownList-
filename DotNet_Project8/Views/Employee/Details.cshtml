@@ -1,0 +1,15 @@
+﻿@model DotNet_Project8.Models.Employee
+<h2 class="text-primary text-center">Employee Details</h2>
+
+                    
+                <p>Name:       @Model.Name </p>    
+                <p>Address:    @Model.Address</p>
+                <p>Salary:     @Model.Salary</p>
+                <p>Department: @Model.Department.Name</p>
+                <p>Designation:@Model.Designation.Name</p>
+<br/>
+<br/>
+@Html.ActionLink("Back To List", "Index")  |   @Html.ActionLink("Edit", "Upsert", new { id = Model.Id })
+                      
+                              
+

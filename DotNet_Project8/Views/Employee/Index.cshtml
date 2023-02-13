@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DotNet_Project8.Models.Employee>
+<h2 class="text-primary text-center">Employee List</h2>
+@Html.ActionLink("Create New Employee", "Upsert", "Employee", new { @class = "btn btn-info" })
+<br/>
+<br/>
+@if (!Model.Any())
+{
+    <h3 class="text-capitalize danger">No Data Found</h3>
+}
+else
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Salary</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in Model)
+            {
+                using (Html.BeginForm("Delete", "Employee", new { id = emp.Id }))
+                {
+                    <tr>
+                        <td>@emp.Name</td>
+                        <td>@emp.Address</td>
+                        <td>@emp.Salary</td>
+                        <td>@emp.Department.Name</td>
+                        <td>@emp.Designation.Name</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Upsert", new { id = emp.Id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Details", "Details", new { id = emp.Id }, new { @class = "btn btn-success" })
+                        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('want to delete data?')" />
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+
+    </table>
+}
